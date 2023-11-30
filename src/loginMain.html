@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landlord-Tenant Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        nav {
+            background-color: #4CAF50;
+            overflow: hidden;
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .table-container {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Landlord-Tenant Management System</h1>
+</header>
+
+<nav id="navbar" class="hide">
+    <a href="#" onclick="showMainPage('home')">Home</a>
+    <a href="#" onclick="showMainPage('tenants')">Tenants</a>
+    <a href="#" onclick="showMainPage('maintenance')">Maintenance Requests</a>
+</nav>
+
+<div class="container" id="loginContainer">
+    <div class="form-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label for="userType">User Type:</label>
+            <select id="userType" name="userType">
+                <option value="tenant">Tenant</option>
+                <option value="staff">Staff Member</option>
+                <option value="manager">Manager</option>
+            </select><br>
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br>
+
+            <button type="button" class="button" onclick="login()">Login</button>
+        </form>
+    </div>
+</div>
+
+<!-- Main pages for each user type -->
+<div id="mainPageTenant" class="container hide">
+    <h2>Welcome Tenant!</h2>
+    <!-- Add content for Tenant page -->
+</div>
+
+<div id="mainPageStaff" class="container hide">
+    <h2>Welcome Staff Member!</h2>
+    <!-- Add content for Staff Member page -->
+</div>
+
+<div id="mainPageManager" class="container hide">
+    <h2>Welcome Manager!</h2>
+    <!-- Add content for Manager page -->
+</div>
+
+<script>
+    function login() {
+        var userType = document.getElementById('userType').value;
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+
+        // Simulate authentication (replace with actual authentication logic)
+        if (username === 'user' && password === 'password') {
+            document.getElementById('navbar').classList.remove('hide');
+            document.getElementById('loginContainer').classList.add('hide');
+
+            // Show main page based on user type
+            showMainPage(userType);
+        } else {
+            alert('Invalid username or password');
+        }
+    }
+
+    function showMainPage(userType) {
+        // Hide all main pages
+        document.getElementById('mainPageTenant').classList.add('hide');
+        document.getElementById('mainPageStaff').classList.add('hide');
+        document.getElementById('mainPageManager').classList.add('hide');
+
+        // Show the selected main page
+        if (userType === 'tenant') {
+            document.getElementById('mainPageTenant').classList.remove('hide');
+        } else if (userType === 'staff') {
+            document.getElementById('mainPageStaff').classList.remove('hide');
+        } else if (userType === 'manager') {
+            document.getElementById('mainPageManager').classList.remove('hide');
+        }
+    }
+</script>
+
+</body>
+</html>
